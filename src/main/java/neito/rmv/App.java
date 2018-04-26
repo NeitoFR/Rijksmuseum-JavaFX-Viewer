@@ -16,7 +16,7 @@ public class App extends Application
 	private BorderPane rootLayout;
 	
 	public App(){
-		
+	
 	}
     public static void main( String args[] )
     {
