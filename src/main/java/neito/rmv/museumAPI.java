@@ -13,13 +13,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javafx.scene.image.Image;
+import neito.rmv.model.Oeuvre;
 
 public class museumAPI {
 	private final static String token = "MvDNbZD9";
-	private static ArrayList<String> imagesURL = new ArrayList<String>();
+	private static ArrayList<Oeuvre> listOeuvres = new ArrayList<Oeuvre>();
 	
 	public static void main(String[] args) {
-		getImage();
+		getListOeuvres();
 	}
 	
 	private static HttpURLConnection initConnection(String s) {
@@ -43,10 +44,9 @@ public class museumAPI {
 		return c;
 	}
 
-	public static String getImage() {
-		Image i = null;;
+	public static ArrayList<Oeuvre> getListOeuvres() {
 		String url = museumAPI.class.getClassLoader().getResource("Hearthstone.jpg").toString();
-		HttpURLConnection c =  initConnection("https://www.rijksmuseum.nl/api/en/collection?key="+token+"&ps=1000&format=json&principalMaker=Rembrandt%20van%20Rijn");
+		HttpURLConnection c =  initConnection("https://www.rijksmuseum.nl/api/en/collection?key="+token+"&ps=10&format=json&principalMaker=Rembrandt%20van%20Rijn");
 		
 		if(c != null) {
 			try {
@@ -65,16 +65,24 @@ public class museumAPI {
 					//url = jres.getJSONArray("artObjects").getJSONObject(0).getJSONObject("webImage").getString("url");
 					//System.out.println(url);
 					//System.out.println(jres.getJSONArray("artObjects").getJSONObject(64).get("webImage").equals(null));
-					for(int j = 0; j < jres.getJSONArray("artObjects").length()-1; j++) {
-						System.out.println(imagesURL);
-						if(!jres.getJSONArray("artObjects").getJSONObject(j).get("webImage").equals(null)){
-							imagesURL.add(jres.getJSONArray("artObjects").getJSONObject(j).getJSONObject("webImage").getString("url"));
+					JSONArray artList = jres.getJSONArray("artObjects");
+					//System.out.println(artList.toString());
+					
+					for(int j = 0; j < artList.length(); j++) {
+						JSONObject art = artList.getJSONObject(j);
+						//System.out.println(art.toString());
+						if(!art.get("webImage").equals(null)){
+							String[] tab = new String[3];
+							tab = art.get("longTitle").toString().split(",");
+							System.out.println(tab[tab.length-1]);
+							listOeuvres.add(new Oeuvre(art.getString("principalOrFirstMaker"), art.getString("title"), tab[tab.length-1], art.getJSONObject("webImage").getString("url")));
 						}
 						else
 						{
 							System.out.println("Pas d'url");
 						}
-						System.out.println(j);
+						
+						//System.out.println("Image : "+j+" URL : "+ imagesURL.get(j));
 					}
 				}
 				else {
@@ -85,10 +93,8 @@ public class museumAPI {
 		}
 		else{
 			System.out.println("Image non récupéré");
-//			url = museumAPI.class.getClassLoader().getResource("anissa.jpg");
-//			System.out.println(museumAPI.class.getClassLoader().getResource("anissa.jpg"));	
 		}
 		
-		return url;
+		return listOeuvres;
 	}
 }

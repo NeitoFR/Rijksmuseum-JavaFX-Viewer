@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neito.rmv.view.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neito.rmv.view.MainViewController">
    <children>
-      <ImageView fx:id="artwork" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="artwork" fitHeight="549.0" fitWidth="582.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="prev" layoutX="14.0" layoutY="549.0" mnemonicParsing="false" onAction="#handlePrecedent" text="Précédent" />
+      <Button fx:id="next" layoutX="110.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleSuivant" text="Suivant" />
+      <GridPane layoutX="632.0" layoutY="14.0" prefHeight="239.0" prefWidth="354.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-border-style: solid; -fx-padding: 10px;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="47.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="285.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artiste" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" GridPane.rowIndex="2" />
+            <Label fx:id="Lartiste" GridPane.columnIndex="1" />
+            <Label fx:id="Ltitre" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="Ldate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

@@ -22,8 +22,6 @@ public class App extends Application
     {
 		launch();
     }
-
-    
 	@Override
 	public void start(Stage app_base) throws Exception {
 		this.app_base = app_base;
@@ -31,8 +29,6 @@ public class App extends Application
 		initRoot();
 		showMainView();
 	}
-	
-	
 	private void initRoot() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
