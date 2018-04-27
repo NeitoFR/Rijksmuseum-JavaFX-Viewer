@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import neito.rmv.model.Oeuvre;
 
 public class museumAPI {
 	private final static String token = "MvDNbZD9";
-	private static ArrayList<Oeuvre> listOeuvres = new ArrayList<Oeuvre>();
+	private static ObservableArrayList<Oeuvre> listOeuvres = new ArrayList<Oeuvre>();
 	
 	public static void main(String[] args) {
 		getListOeuvres();
@@ -74,7 +75,7 @@ public class museumAPI {
 						if(!art.get("webImage").equals(null)){
 							String[] tab = new String[3];
 							tab = art.get("longTitle").toString().split(",");
-							System.out.println(tab[tab.length-1]);
+							//System.out.println(tab[tab.length-1]);
 							listOeuvres.add(new Oeuvre(art.getString("principalOrFirstMaker"), art.getString("title"), tab[tab.length-1], art.getJSONObject("webImage").getString("url")));
 						}
 						else
