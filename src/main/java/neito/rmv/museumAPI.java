@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import neito.rmv.model.Oeuvre;
 
 public class museumAPI {
 	private final static String token = "MvDNbZD9";
-	private static ObservableArrayList<Oeuvre> listOeuvres = new ArrayList<Oeuvre>();
+	private final static String nbImage = "100";//Only 10 by 10
+	private static ArrayList<Oeuvre> listOeuvres = new ArrayList<Oeuvre>();
 	
 	public static void main(String[] args) {
 		getListOeuvres();
@@ -47,7 +47,7 @@ public class museumAPI {
 
 	public static ArrayList<Oeuvre> getListOeuvres() {
 		String url = museumAPI.class.getClassLoader().getResource("Hearthstone.jpg").toString();
-		HttpURLConnection c =  initConnection("https://www.rijksmuseum.nl/api/en/collection?key="+token+"&ps=10&format=json&principalMaker=Rembrandt%20van%20Rijn");
+		HttpURLConnection c =  initConnection("https://www.rijksmuseum.nl/api/en/collection?key="+token+"&ps="+nbImage+"&format=json&principalMaker=Rembrandt%20van%20Rijn");
 		
 		if(c != null) {
 			try {
@@ -68,22 +68,24 @@ public class museumAPI {
 					//System.out.println(jres.getJSONArray("artObjects").getJSONObject(64).get("webImage").equals(null));
 					JSONArray artList = jres.getJSONArray("artObjects");
 					//System.out.println(artList.toString());
-					
-					for(int j = 0; j < artList.length(); j++) {
+					System.out.println("***"+artList.length());
+					for(int j = 0, b = 0; j < artList.length(); j++) {
 						JSONObject art = artList.getJSONObject(j);
 						//System.out.println(art.toString());
 						if(!art.get("webImage").equals(null)){
 							String[] tab = new String[3];
 							tab = art.get("longTitle").toString().split(",");
 							//System.out.println(tab[tab.length-1]);
-							listOeuvres.add(new Oeuvre(art.getString("principalOrFirstMaker"), art.getString("title"), tab[tab.length-1], art.getJSONObject("webImage").getString("url")));
+							listOeuvres.add(new Oeuvre(art.getString("principalOrFirstMaker"), art.getString("title"), tab[tab.length-1], art.getJSONObject("webImage").getString("url"), b++));
 						}
+				
 						else
 						{
 							System.out.println("Pas d'url");
+							
 						}
 						
-						//System.out.println("Image : "+j+" URL : "+ imagesURL.get(j));
+						//System.out.println("Image : "+j);
 					}
 				}
 				else {

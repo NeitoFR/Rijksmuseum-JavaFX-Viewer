@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neito.rmv.view.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neito.rmv.view.MainViewController">
    <children>
-      <ImageView fx:id="artwork" fitHeight="549.0" fitWidth="582.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="prev" layoutX="14.0" layoutY="549.0" mnemonicParsing="false" onAction="#handlePrecedent" text="Précédent" />
-      <Button fx:id="next" layoutX="110.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleSuivant" text="Suivant" />
-      <GridPane layoutX="632.0" layoutY="14.0" prefHeight="239.0" prefWidth="354.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-border-style: solid; -fx-padding: 10px;">
+      <ImageView fx:id="artwork" fitHeight="549.0" fitWidth="582.0" layoutX="336.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="prev" layoutX="336.0" layoutY="565.0" mnemonicParsing="false" onAction="#handlePrecedent" text="Précédent" />
+      <Button fx:id="next" layoutX="849.0" layoutY="565.0" mnemonicParsing="false" onAction="#handleSuivant" text="Suivant" />
+      <GridPane layoutX="932.0" layoutY="14.0" prefHeight="239.0" prefWidth="354.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-border-style: solid; -fx-padding: 10px;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="47.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="285.0" />
@@ -31,5 +31,6 @@
             <Label fx:id="Ldate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <ListView fx:id="selectList" prefHeight="600.0" prefWidth="331.0" />
    </children>
 </AnchorPane>
